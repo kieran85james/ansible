@@ -1,0 +1,18 @@
+# note: flatpak packages not automated in arch yet, snapd is not available in repo
+- name: software | mariadb | install package
+  tags: packages,flatpak,mariadb,workstation-packages
+  become_user: kieranjames
+  flatpak:
+    name: io.dbeaver.DBeaverCommunity
+    method: system
+    state: present
+  when: mariadb is defined and mariadb == true
+
+- name: software | mariadb | install client
+  tags: packages,flatpak,mariadb,workstation-packages
+  become_user: kieranjames
+  flatpak:
+    name: io.dbeaver.DBeaverCommunity.Client.mariadb
+    method: system
+    state: present
+  when: mariadb is defined and mariadb == true

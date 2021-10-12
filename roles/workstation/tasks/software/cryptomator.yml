@@ -1,0 +1,31 @@
+- name: software | cryptomator | add repository key
+  apt_key:
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xcd045438b0d383a4039ea86f892c15cd130feb9a
+  when:
+    - ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+    - cryptomator is defined
+    - cryptomator == true
+
+- name: software | cryptomator | add repository
+  apt_repository:
+    repo: "deb [arch=amd64] http://ppa.launchpad.net/sebastian-stenzel/cryptomator/ubuntu focal main"
+    filename: cryptomator
+  register: cryptomator_repo
+  when:
+    - ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+    - cryptomator is defined
+    - cryptomator == true
+
+- name: software | cryptomator | update sources (repo added or changed)
+  apt:
+    update_cache: yes
+  changed_when: False
+  when: cryptomator_repo.changed
+
+- name: software | cryptomator | install package
+  apt:
+    name: cryptomator
+  when:
+    - ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+    - cryptomator is defined
+    - cryptomator == true

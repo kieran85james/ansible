@@ -1,0 +1,85 @@
+- name: users | kieranjames | remove preinstalled clutter from home directory
+  file:
+    path: /home/kieranjames/{{ item }}
+    state: absent
+  with_items:
+    - examples.desktop
+    - Desktop
+    - Documents
+    - Downloads
+    - Music
+    - Pictures
+    - Public
+    - Templates
+    - Videos
+
+- name: users | kieranjames | create personal config directories
+  tags: dotfiles,dotfiles-kieranjames
+  file:
+    path: /home/kieranjames/{{ item.dir }}
+    state: directory
+    owner: kieranjames
+    group: kieranjames
+    mode: 0700
+  with_items:
+    - { dir: .config }
+    - { dir: .config/autostart }
+    - { dir: .config/gtk-3.0 }
+    - { dir: .local }
+    - { dir: .local/share }
+    - { dir: .local/share/applications }
+    - { dir: .local/bin }
+    - { dir: .ssh }
+    - { dir: desktop }
+    - { dir: documents }
+    - { dir: downloads }
+    - { dir: music }
+    - { dir: pictures }
+    - { dir: public }
+    - { dir: templates }
+    - { dir: videos }
+    - { dir: projects }
+    - { dir: projects/backups }
+    - { dir: projects/cloudyne }
+    - { dir: projects/job/ }
+    - { dir: projects/personal }
+
+- name: users | kieranjames | copy user-dirs.dirs
+  tags: dotfiles,dotfiles-kieranjames
+  copy:
+    src: users/kieranjames/user-dirs.dirs
+    dest: /home/kieranjames/.config/user-dirs.dirs
+    owner: kieranjames
+    group: kieranjames
+    mode: 0600
+  notify: update_xdg
+
+- name: users | kieranjames | copy personal config files
+  tags: dotfiles,dotfiles-kieranjames
+  copy:
+    src: users/kieranjames/{{ item.src }}
+    dest: /home/kieranjames/{{ item.dest }}
+    owner: kieranjames
+    group: kieranjames
+    mode: 0600
+  with_items:
+    - { src: 'directory_bookmarks', dest: '.config/gtk-3.0/bookmarks' }
+    - { src: 'mimeapps.list', dest: '.config/mimeapps.list' }
+    - { src: 'ssh_client_config', dest: '.ssh/config' }
+
+- name: users | kieranjames | copy profile image
+  tags: dotfiles,dotfiles-kieranjames
+  copy:
+    src: users/kieranjames/profile_image.png
+    dest: /var/lib/AccountsService/icons/kieranjames.png
+    owner: root
+    group: root
+    mode: 0644
+
+- name: users | kieranjames | set profile image
+  tags: users
+  become: true
+  lineinfile:
+      dest: /var/lib/AccountsService/users/kieranjames
+      regexp: "^Icon="
+      line: "Icon=/var/lib/AccountsService/icons/kieranjames.png"

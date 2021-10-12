@@ -1,0 +1,6 @@
+- name: gnome | terminal | disable terminal menubar
+  tags: gnome,gnome-terminal
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/terminal/legacy/default-show-menubar"
+    value: "false"

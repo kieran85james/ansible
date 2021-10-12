@@ -1,0 +1,8 @@
+- name: software | joplin | install package
+  tags: packages,flatpak,joplin,workstation-packages
+  become_user: kieranjames
+  flatpak:
+    name: net.cozic.joplin_desktop
+    method: system
+    state: present
+  when: joplin is defined and joplin == true

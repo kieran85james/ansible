@@ -1,0 +1,18 @@
+- name: system setup | clock | install systemd-timesyncd (ubuntu)
+  tags: ntp,system setup
+  package:
+    name: systemd-timesyncd
+    state: latest
+  when: ansible_distribution in ["Pop!_OS", "Ubuntu"]
+
+- name: system setup | clock | start and enable systemd-timesyncd
+  tags: ntp,system settiings
+  service:
+    name: systemd-timesyncd
+    state: started
+    enabled: true
+
+- name: system setup | clock | set time zone
+  tags: ntp,timezone,system setup
+  timezone:
+    name: "Europe/London"

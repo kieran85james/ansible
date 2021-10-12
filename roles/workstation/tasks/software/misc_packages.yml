@@ -1,0 +1,19 @@
+- name: software | install workstation distribution packages
+  tags: packages,workstation-packages
+  package:
+    name:
+      - code
+      - docker-compose
+      - shotwell
+
+- name: software | docker | create group
+  tags: software,docker,groups
+  group:
+    name: docker
+    state: present
+
+- name: software | docker | add user(s) to group
+  user:
+    name: 'kieranjames'
+    groups: docker
+    append: yes

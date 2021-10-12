@@ -1,0 +1,9 @@
+# note: flatpak packages not automated in arch yet, snapd is not available in repo
+- name: software | authenticator | install package
+  tags: packages,flatpak,authenticator,workstation-packages
+  become_user: kieranjames
+  flatpak:
+    name: com.belmoussaoui.Authenticator
+    method: system
+    state: present
+  when: authenticator is defined and authenticator == true

@@ -1,0 +1,17 @@
+[Added Associations]
+audio/flac=org.gnome.Totem.desktop;
+x-scheme-handler/http=chromium.desktop;chromium_chromium.desktop;
+text/html=org.gnome.gedit.desktop;org.gnome.Evince.desktop;chromium.desktop;chromium_chromium.desktop;
+x-scheme-handler/https=chromium.desktop;chromium_chromium.desktop;
+application/octet-stream=code.desktop;
+video/mp4=mpv.desktop;
+x-scheme-handler/sms=org.gnome.Shell.Extensions.GSConnect.desktop;
+x-scheme-handler/tel=org.gnome.Shell.Extensions.GSConnect.desktop;
+
+[Default Applications]
+x-scheme-handler/http=google-chrome.desktop
+text/html=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/msteams=teams.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop

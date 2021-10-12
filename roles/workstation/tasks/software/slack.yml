@@ -1,0 +1,8 @@
+- name: software | slack | install package
+  tags: packages,flatpak,slack,workstation-packages
+  become_user: kieranjames
+  flatpak:
+    name: com.slack.Slack
+    method: system
+    state: present
+  when: slack is defined and slack == true

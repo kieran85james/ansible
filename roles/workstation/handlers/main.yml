@@ -1,0 +1,18 @@
+---
+- name: update_xdg
+  tags: users,config,xdg
+  become_user: kieranjames
+  command: /usr/bin/xdg-user-dirs-update
+
+# GNOME stuff
+- name: gnome_tracker_clean_cache
+  tags: gnome,tracker
+  file:
+    path: /home/kieranjames/.cache/tracker
+    state: absent
+
+- name: gnome_tracker_clean_local_cache
+  tags: gnome,tracker
+  file:
+    path: /home/kieranjames/.local/share/tracker
+    state: absent

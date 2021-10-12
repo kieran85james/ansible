@@ -1,0 +1,31 @@
+- name: software | ms-teams | add repository key
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+  when:
+    - ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+    - teams is defined
+    - teams == true
+
+- name: software | ms-teams | add repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main"
+    filename: teams
+  register: teams_repo
+  when:
+    - ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+    - teams is defined
+    - teams == true
+
+- name: software | ms-teams | update sources (repo added or changed)
+  apt:
+    update_cache: yes
+  changed_when: False
+  when: teams_repo.changed
+
+- name: software | ms-teams | install package
+  apt:
+    name: teams
+  when:
+    - ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+    - teams is defined
+    - teams == true

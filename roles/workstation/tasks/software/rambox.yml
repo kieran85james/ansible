@@ -1,0 +1,10 @@
+- name: software | rambox | install package
+  tags: packages,rambox,snap,workstation-packages
+  snap:
+    name:  rambox
+    channel: latest/edge
+    state: present
+  when:
+    - ansible_distribution != "Archlinux"
+    - rambox is defined
+    - rambox == true

@@ -1,0 +1,94 @@
+# - name: gnome | appearance | copy wallpaper file
+#   tags: gnome,gnome-wallpaper
+#   copy:
+#     src: gnome/wallpaper.png
+#     dest: /usr/share/backgrounds/kieranjames-wallpaper.png
+#     owner: root
+#     group: root
+#     mode: 0644
+
+- name: gnome | appearance | set wallpaper
+  tags: gnome,gnome-wallpaper
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file:///usr/share/backgrounds/pop/kate-hazen-pop-m3lvin.png'"
+
+- name: gnome | appearance | set wallpaper position
+  tags: gnome,gnome-wallpaper
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/desktop/background/picture-options"
+    value: "'zoom'"
+
+# - name: gnome | appearance | copy lock screen background file
+#   tags: gnome,gnome-lockscreen
+#   copy:
+#     src: files/gnome/lockscreen.jpg
+#     dest: /usr/share/backgrounds/kieranjames-lockscreen.jpg
+#     owner: root
+#     group: root
+#     mode: 0644
+
+- name: gnome | appearance | set lock screen background
+  tags: gnome,gnome-lockscreen
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/desktop/screensaver/picture-uri"
+    value: "'file:///usr/share/backgrounds/pop/kate-hazen-pop-m3lvin.png'"
+
+- name: gnome | appearance | set lock screen background position
+  tags: gnome,gnome-lockscreen
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/desktop/screensaver/picture-options"
+    value: "'zoom'"
+
+- name: gnome | appearance | set app-folders
+  tags: gnome,app-folders
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/desktop/app-folders/folder-children"
+    value: "['Pop-Office', 'Pop-System', 'Pop-Utility', 'Social']"
+
+- name: gnome | appearance | set applications within office directory
+  tags: gnome,app-folders
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/desktop/app-folders/folders/Pop-Office/apps"
+    value: "['libreoffice-calc.desktop', 'libreoffice-draw.desktop', 'libreoffice-impress.desktop', 'libreoffice-math.desktop', 'libreoffice-startcenter.desktop', 'libreoffice-writer.desktop']"
+
+- name: gnome | appearance | set applications within system directory
+  tags: gnome,app-folders
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/desktop/app-folders/folders/Pop-System/apps"
+    value: "['gnome-language-selector.desktop', 'gnome-session-properties.desktop', 'gnome-system-monitor.desktop', 'im-config.desktop', 'nm-connection-editor.desktop', 'nvidia-settings.desktop', 'org.gnome.baobab.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.PowerStats.desktop', 'org.gnome.seahorse.Application.desktop', 'software-properties-gnome.desktop', 'system76-driver.desktop', 'system76-firmware.desktop', 'org.gnome.Extensions.desktop', 'gnome-control-center.desktop', 'org.gnome.tweaks.desktop']"
+
+- name: gnome | appearance | set applications within utility directory
+  tags: gnome,app-folders
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/desktop/app-folders/folders/Pop-Utility/apps"
+    value: "['com.github.donadigo.eddy.desktop', 'com.system76.Popsicle.desktop', 'eog.desktop', 'gucharmap.desktop', 'info.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Screenshot.desktop', 'simple-scan.desktop', 'yelp.desktop', 'syncthing-ui.desktop', 'syncthing-start.desktop', 'org.gnome.Totem.desktop', 'org.gnome.Weather.desktop', 'vim.desktop', 'safeeyes.desktop']"
+
+- name: gnome | appearance | set label of the social directory
+  tags: gnome,app-folders
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/desktop/app-folders/folders/Social/name"
+    value: "'Social'"
+
+- name: gnome | appearance | set applications within social directory
+  tags: gnome,app-folders
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/desktop/app-folders/folders/Social/apps"
+    value: "['skype_skypeforlinux.desktop', 'rambox_rambox.desktop', 'slack_slack.desktop', 'org.gnome.Geary.desktop', 'teams.desktop', 'com.skype.Client.desktop', 'com.slack.Slack.desktop']"
+
+- name: gnome | appearance | set favorite apps
+  tags: gnome,favorite-apps
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/shell/favorite-apps"
+    value: "['code.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'google-chrome.desktop', 'org.gnome.Geary.desktop', 'teams.desktop', 'com.slack.Slack.desktop', 'org.gnome.Nautilus.desktop']"

@@ -1,0 +1,80 @@
+- name: users | kieranjames | create group
+  tags: groups,kieranjames,users
+  group:
+    name: kieranjames
+    state: present
+
+- name: users | kieranjames | create user
+  tags: kieranjames,sudo,users
+  user:
+    name: kieranjames
+    group: kieranjames
+    groups: adm,{{ sudo_group }}
+    state: present
+    comment: "Kieran James"
+    password: "{{ kieranjames_passwd }}"
+    shell: /bin/zsh
+
+- name: users | kieranjames | create .ssh directory
+  tags: dotfiles,kieranjames,ssh,users
+  file:
+    path: "{{ item.dir }}"
+    state: directory
+    owner: kieranjames
+    group: kieranjames
+    mode: 0700
+  with_items:
+    - { dir: '/home/kieranjames/.ssh' }
+
+- name: users | kieranjames | create config directories
+  tags: dotfiles,kieranjames,users,zsh
+  file:
+    path: /home/kieranjames/{{ item.dir }}
+    state: directory
+    owner: kieranjames
+    group: kieranjames
+    mode: 0700
+  with_items:
+    - { dir: '.bash' }
+    - { dir: '.config' }
+    - { dir: '.zsh' }
+
+- name: users | kieranjames | copy dotfiles
+  tags: dotfiles,users,kieranjames,bash,zsh
+  copy:
+    src: users/kieranjames/{{ item.src }}
+    dest: /home/kieranjames/{{ item.dest }}
+    owner: kieranjames
+    group: kieranjames
+    mode: 0600
+  with_items:
+    - { src: 'bash/bash_aliases', dest: '.bash/bash_aliases' }
+    - { src: 'bash/bash_profile', dest: '.bash_profile' }
+    - { src: 'bash/bash_prompt', dest: '.bash/bash_prompt' }
+    - { src: 'bash/bash_functions', dest: '.bash/bash_functions' }
+    - { src: 'bash/bashrc', dest: '.bashrc' }
+    - { src: 'bash/profile', dest: '.profile' }
+    - { src: 'git/gitconfig', dest: '.gitconfig' }
+    - { src: 'inputrc', dest: '.inputrc' }
+    - { src: 'zsh/zshrc', dest: '.zshrc' }
+
+- name: users | kieranjames | copy individual zsh config files
+  tags: dotfiles,kieranjames,users,zsh
+  copy:
+    src: users/kieranjames/zsh/{{ item.src }}
+    dest: /home/kieranjames/.zsh/{{ item.src }}
+    owner: kieranjames
+    group: kieranjames
+    mode: 0600
+  with_items:
+    - { src: 'aliases.zsh' }
+    - { src: 'bindkey.zsh' }
+    - { src: 'completion.zsh' }
+    - { src: 'exports.zsh' }
+    - { src: 'functions.zsh' }
+    - { src: 'history.zsh' }
+    - { src: 'path.zsh' }
+    - { src: 'plugins.zsh' }
+    - { src: 'prompt.zsh' }
+    - { src: 'setopt.zsh' }
+    - { src: 'theming.zsh' }

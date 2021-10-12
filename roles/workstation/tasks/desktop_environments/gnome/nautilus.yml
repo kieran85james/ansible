@@ -1,0 +1,6 @@
+- name: gnome | nautilus | configure single-click to open files
+  tags: gnome,nautilus
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/nautilus/preferences/click-policy"
+    value: "'single'"

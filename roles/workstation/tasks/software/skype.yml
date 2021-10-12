@@ -1,0 +1,8 @@
+- name: software | skype | install package
+  tags: packages,flatpak,skype,workstation-packages
+  become_user: kieranjames
+  flatpak:
+    name: com.skype.Client
+    method: system
+    state: present
+  when: skype is defined and skype == true

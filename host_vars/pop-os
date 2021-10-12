@@ -1,0 +1,27 @@
+---
+branch: main
+
+ansible_cron_minute: "*/5"
+ssh_port: 22
+ssh_users: "kieranjames"
+
+# app defaults
+web_browser: google-chrome --incognito
+
+# application selection
+authenticator: true
+bitwarden: true
+cryptomator: true
+games: true
+joplin: true
+mariadb: true
+rambox: true
+skype: true
+slack: true
+spotify: true
+steam: true
+teams: true
+
+# desktop environment selection
+gnome: true
+mate: false
