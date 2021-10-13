@@ -10,6 +10,7 @@
     name: kieranjames
     group: kieranjames
     groups: adm,{{ sudo_group }}
+    append: yes
     state: present
     comment: "Kieran James"
     password: "{{ kieranjames_passwd }}"
