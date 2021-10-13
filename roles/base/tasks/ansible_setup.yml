@@ -57,15 +57,5 @@
   file:
     path: /home/kieranjames/.vault_key
     owner: kieranjames
-    group: kieranjames
-    mode: 0600
-  
-- name: ansible setup | copy valut_key to simone user
-  tags: ansible,ansible-setup
-  become: true
-  copy:
-    src: /home/kieranjames/.vault_key
-    dest: /home/simone/.vault_key
-    owner: simone
     group: simone
-    mode: 0600
+    mode: 0640
