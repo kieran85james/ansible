@@ -78,7 +78,6 @@
 
 - name: users | kieranjames | set profile image
   tags: users
-  become: true
   lineinfile:
       dest: /var/lib/AccountsService/users/kieranjames
       regexp: "^Icon="
