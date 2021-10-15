@@ -15,4 +15,6 @@
     name: io.dbeaver.DBeaverCommunity.Client.mariadb
     method: system
     state: present
+  register: mariadb_client
   when: mariadb is defined and mariadb == true
+  changed_when: '"already installed" not in mariadb_client.stderr'
