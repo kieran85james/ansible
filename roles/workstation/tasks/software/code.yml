@@ -1,0 +1,5 @@
+- name: software | code | install package
+  tags: packages,code,workstation-packages
+  package:
+    name: code
+  when: code is defined and code == true
