@@ -1,0 +1,5 @@
+- name: software | shotwell | install package
+  tags: packages,shotwell,workstation-packages
+  package:
+    name: shotwell
+  when: shotwell is defined and shotwell == true

@@ -1,0 +1,19 @@
+- name: software | docker | install package
+  tags: packages,docker,workstation-packages
+  package:
+    name: docker-compose
+  when: docker is defined and docker == true
+
+- name: software | docker | create group
+  tags: software,docker,groups
+  group:
+    name: docker
+    state: present
+  when: docker is defined and docker == true
+
+- name: software | docker | add user(s) to group
+  user:
+    name: kieranjames
+    groups: docker
+    append: yes
+  when: docker is defined and docker == true

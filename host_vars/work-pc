@@ -10,19 +10,19 @@ web_browser: google-chrome --incognito
 
 # application selection
 authenticator: true
-bitwarden: true
+bitwarden: false
 code: true
-cryptomator: true
+cryptomator: false
 docker: true
-games: true
-joplin: true
+games: false
+joplin: false
 mariadb: true
-rambox: true
-shotwell: true
-skype: true
+rambox: false
+shotwell: false
+skype: false
 slack: true
 spotify: true
-steam: true
+steam: false
 teams: true
 
 # desktop environment selection
