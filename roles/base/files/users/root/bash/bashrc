@@ -1,3 +1,6 @@
+# Current PS1:
+tty -s && export PS1="[\[$(tput sgr0)\]\[\033[38;5;1m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\h:\W]\\$ \[$(tput sgr0)\]"
+
 # Env
 export TERM=xterm-256color
 export EDITOR=vim
