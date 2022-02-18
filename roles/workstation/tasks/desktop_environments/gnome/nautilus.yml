@@ -3,4 +3,4 @@
   become_user: kieranjames
   dconf:
     key: "/org/gnome/nautilus/preferences/click-policy"
-    value: "'single'"
+    value: "'double'"
