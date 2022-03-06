@@ -3,6 +3,7 @@
   user:
     name: simone
     groups: root
+    shell: /bin/bash
 
 # - name: users | simone | add public key
 #   tags: dotfiles,simone,ssh,ssh-keys,users
