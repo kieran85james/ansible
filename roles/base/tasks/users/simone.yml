@@ -20,3 +20,10 @@
     owner: root
     group: root
     mode: 0440
+
+- name: users | simone | set default shell
+  tags: settings,simone,sudo,system,users
+  user:
+    name: simone
+    shell: /bin/bash
+    append: yes
