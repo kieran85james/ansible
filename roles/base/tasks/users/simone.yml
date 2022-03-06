@@ -3,6 +3,7 @@
   user:
     name: simone
     groups: root
+    shell: /bin/bash
 
 # - name: users | simone | add public key
 #   tags: dotfiles,simone,ssh,ssh-keys,users
@@ -20,10 +21,3 @@
     owner: root
     group: root
     mode: 0440
-
-- name: users | simone | set default shell
-  tags: settings,simone,sudo,system,users
-  user:
-    name: simone
-    shell: /bin/bash
-    append: yes
