@@ -14,7 +14,6 @@
   apt_repository:
     repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
     state: absent
-  register: chrome_repo
   when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
 
 - name: software | google-chrome | update sources (repo added or changed)
