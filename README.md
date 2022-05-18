@@ -38,4 +38,12 @@ After it's run for the first time manually, this Ansible config creates its own 
 ## How do I run it?
 You run it with the following command after installing Ansible:
 
-ansible-pull --vault-password-file={path} -U https://github.com/kieran85james/ansible.git --ask-become-pass
+`ansible-pull --vault-password-file={path} -U https://github.com/kieran85james/ansible.git --ask-become-pass`
+
+### Python Interpreter
+Sometimes errors regarding python or python modules can occur. If you have a warning similar to: "A future installation of another Python interpreter could alter the one chosen" then try the following.
+
+1. Run `ansible --version` and get the python version
+2. Run `ansible-pull --vault-password-file={path} -U https://github.com/kieran85james/ansible.git --ask-become-pass --extra-vars ansible_python_interpreter=/usr/bin/python{{version}}`
+
+You can read more on the topic [here](https://docs.ansible.com/ansible/latest/reference_appendices/interpreter_discovery.html).
