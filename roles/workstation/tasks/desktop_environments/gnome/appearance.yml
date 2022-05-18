@@ -44,6 +44,16 @@
     key: "/org/gnome/desktop/screensaver/picture-options"
     value: "'zoom'"
 
+- name: gnome | appearance | remove pop-os cosmic desktop icons
+  tags: gnome,gnome-applications
+  file:
+    path: /usr/share/applications/{{ item.dir }}
+    state: absent
+  with_items:
+    - { dir: 'pop-cosmic-applications.desktop' }
+    - { dir: 'pop-cosmic-launcher.desktop' }
+    - { dir: 'pop-cosmic-workspaces.desktop' }
+
 - name: gnome | appearance | set app-folders
   tags: gnome,app-folders
   become_user: kieranjames
