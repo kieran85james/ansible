@@ -94,7 +94,7 @@
   become_user: kieranjames
   dconf:
     key: "/org/gnome/desktop/app-folders/folders/Social/apps"
-    value: "['skype_skypeforlinux.desktop', 'rambox_rambox.desktop', 'slack_slack.desktop', 'org.gnome.Geary.desktop', 'teams.desktop', 'com.skype.Client.desktop', 'com.slack.Slack.desktop']"
+    value: "['skype_skypeforlinux.desktop', 'rambox_rambox.desktop', 'slack_slack.desktop', 'org.gnome.Geary.desktop', 'teams.desktop', 'com.skype.Client.desktop', 'com.slack.Slack.desktop', 'com.getferdi.Ferdi.desktop']"
 
 - name: gnome | appearance | set favorite apps
   tags: gnome,favorite-apps
