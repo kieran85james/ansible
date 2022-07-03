@@ -17,7 +17,8 @@ docker: true
 games: true
 joplin: true
 mariadb: true
-rambox: true
+rambox: false
+Ferdi: true
 shotwell: true
 skype: true
 slack: true
