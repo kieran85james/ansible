@@ -1,0 +1,31 @@
+- name: software | install workstation distribution packages
+  tags: packages,workstation-packages
+  package:
+    name:
+      - gparted
+      - smbclient
+      - unrar
+      - dconf-editor
+      - geary
+      - wireguard-tools
+      - "{{ cups_package }}"
+      - "{{ cryptsetup_package }}"
+      - "{{ font_fira_mono_package }}"
+      - "{{ hyphen_package }}"
+      - "{{ p7zip_package }}"
+      - "{{ libnotify_package }}"
+      - "{{ network_manager_openvpn_package }}"
+      - "{{ network_manager_package }}"
+      - "{{ network_manager_pptp_package }}"
+      - "{{ network_manager_vpnc_package }}"
+      - "{{ wireless_tools_package }}"
+      - "{{ wpa_supplicant_package }}"
+
+- name: software | remove unneeded workstation packages on debian and ubuntu hosts
+  tags: cleanup,packages,workstation-packages
+  package:
+    state: absent
+    name:
+      - thunderbird*
+      - firefox*
+  when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]

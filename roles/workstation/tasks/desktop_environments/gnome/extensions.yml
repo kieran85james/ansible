@@ -1,0 +1,42 @@
+# TODO: use external module to manage AUR packages https://wiki.archlinux.org/title/Ansible
+
+# gnome-shell-extension-pop-shell
+# Check if pop-shell is installed
+- name: gnome | extensions | check if pop-shell is installed (arch)
+  stat:
+    path: "/usr/share/gnome-shell/extensions/pop-shell@system76.com"
+  register: pop_shell_data
+  when: ansible_distribution == "Archlinux"
+
+# Only clone if extension doesn't exist
+- name: gnome | extensions | clone pop-shell (arch)
+  tags: packages,aur,pop-shell,workstation-packages
+  become: false
+  git:
+    repo: https://aur.archlinux.org/gnome-shell-extension-pop-shell-git.git
+    dest: "/home/kieranjames/pop-shell"
+    update: true
+  when:
+    - ansible_distribution == "Archlinux"
+    - not pop_shell_data.stat.exists
+
+# Only install if extension doesn't exist
+- name: gnome | extensions | build and install pop-shell (arch)
+  tags: packages,aur,pop-shell,workstation-packages
+  become: false
+  command:
+    chdir: "/home/kieranjames/pop-shell"
+    cmd: "makepkg -sfi --noconfirm"
+    creates: /usr/share/gnome-shell/extensions/pop-shell@system76.com/
+  when:
+    - ansible_distribution == "Archlinux"
+    - not pop_shell_data.stat.exists
+
+# Clean up
+- name: gnome | extensions | remove redundant files
+  tags: packages,aur,pop-shell,workstation-packages
+  become: true
+  file:
+    path: /home/kieranjames/pop-shell
+    state: absent
+  when: ansible_distribution == "Archlinux"

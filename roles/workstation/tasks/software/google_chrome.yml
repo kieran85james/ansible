@@ -22,7 +22,15 @@
   changed_when: False
   when: chrome_repo.changed
 
+# - name: software | google-chrome | install package
+#   apt:
+#     name: google-chrome-stable
+#   when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+
 - name: software | google-chrome | install package
-  apt:
-    name: google-chrome-stable
-  when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+  tags: packages,flatpak,google-chrome,workstation-packages
+  become_user: kieranjames
+  flatpak:
+    name: com.google.Chrome
+    method: system
+    state: present

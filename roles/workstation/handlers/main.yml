@@ -1,4 +1,10 @@
 ---
+- name: restart_earlyoom
+  tags: earlyoom,system,system setup,tweaks
+  service:
+    name: earlyoom
+    state: restarted
+    
 - name: update_xdg
   tags: users,config,xdg
   become_user: kieranjames
@@ -16,3 +22,6 @@
   file:
     path: /home/kieranjames/.local/share/tracker
     state: absent
+
+- name: enable_gnome_extensions
+  include_tasks: handlers/enable_gnome_extensions.yml

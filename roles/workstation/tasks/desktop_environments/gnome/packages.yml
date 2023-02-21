@@ -11,7 +11,6 @@
       - gnome-boxes
       - gnome-control-center
       - gnome-disk-utility
-      - gnome-icon-theme
       - gnome-power-manager
       - gnome-remote-desktop
       - gnome-shell
@@ -20,6 +19,21 @@
       - gnome-terminal
       - gnome-tweaks
       - nautilus
+
+- name: gnome | packages | remove gnome packages
+  tags: gnome,gnome-packages
+  package:
+    state: absent
+    name:
+      - gnome-console
+      - gnome-text-editor
+      - gnome-maps
+      - gnome-music
+      - gnome-photos
+      - gnome-clocks
+      - cheese
+      - gvim
+      - epiphany
 
 - name: gnome | packages | install flatpak support in gnome software
   tags: gnome,gnome-packages
