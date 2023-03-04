@@ -32,7 +32,6 @@
       - gnome-photos
       - gnome-clocks
       - cheese
-      - gvim
       - epiphany
 
 - name: gnome | packages | install flatpak support in gnome software
