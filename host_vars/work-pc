@@ -5,6 +5,11 @@ ansible_cron_minute: "*/5"
 ssh_port: 22
 ssh_users: "kieranjames"
 
+# platform-specific
+ansible_python_interpreter: /usr/bin/python3
+microcode_amd_install: false
+microcode_intel_install: true
+
 # app defaults
 web_browser: google-chrome --incognito
 
@@ -17,13 +22,12 @@ docker: true
 games: false
 joplin: false
 mariadb: true
-rambox: false
+ferdium: false
 shotwell: false
-skype: false
 slack: true
 spotify: true
 steam: false
-teams: true
+teams: false
 
 # desktop environment selection
 gnome: true

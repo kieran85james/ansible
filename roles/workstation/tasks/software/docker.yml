@@ -1,6 +1,12 @@
 - name: software | docker | install package
   tags: packages,docker,workstation-packages
   package:
+    name: docker
+  when: docker is defined and docker == true
+
+- name: software | docker-compose | install package
+  tags: packages,docker-compose,workstation-packages
+  package:
     name: docker-compose
   when: docker is defined and docker == true
 

@@ -41,7 +41,10 @@
     - { dir: projects }
     - { dir: projects/backups }
     - { dir: projects/cloudyne }
-    - { dir: projects/job/ }
+    - { dir: projects/job }
+    - { dir: projects/job/kdw }
+    - { dir: projects/job/app }
+    - { dir: projects/job/app/backups }
     - { dir: projects/personal }
 
 - name: users | kieranjames | copy user-dirs.dirs

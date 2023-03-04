@@ -1,0 +1,39 @@
+# Check if timeshift is installed
+- name: software | timeshift | check if timeshift is installed (arch)
+  stat:
+    path: "/usr/bin/timeshift"
+  register: timeshift_data
+  when: ansible_distribution == "Archlinux"
+
+# Only clone if binary doesn't exist
+- name: software | timeshift | clone timeshift (arch)
+  tags: packages,aur,timeshift,workstation-packages
+  become: false
+  git:
+    repo: https://aur.archlinux.org/timeshift.git
+    dest: "/home/kieranjames/timeshift"
+    update: true
+  when:
+    - ansible_distribution == "Archlinux"
+    - not timeshift_data.stat.exists
+
+# Only install if binary doesn't exist
+- name: software | timeshift | build and install timeshift (arch)
+  tags: packages,aur,timeshift,workstation-packages
+  become: false
+  command:
+    chdir: "/home/kieranjames/timeshift"
+    cmd: "makepkg -sfi --noconfirm"
+    creates: /usr/bin/timeshift
+  when:
+    - ansible_distribution == "Archlinux"
+    - not timeshift_data.stat.exists
+
+# Clean up
+- name: software | timeshift | remove redundant files
+  tags: packages,aur,timeshift,workstation-packages
+  become: true
+  file:
+    path: /home/kieranjames/timeshift
+    state: absent
+  when: ansible_distribution == "Archlinux"

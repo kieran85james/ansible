@@ -1,0 +1,39 @@
+# Check if yay is installed
+- name: software | yay | check if yay is installed (arch)
+  stat:
+    path: "/usr/bin/yay"
+  register: yay_data
+  when: ansible_distribution == "Archlinux"
+
+# Only clone if binary doesn't exist
+- name: software | yay | clone yay (arch)
+  tags: packages,aur,yay,workstation-packages
+  become: false
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: "/home/kieranjames/yay"
+    update: true
+  when:
+    - ansible_distribution == "Archlinux"
+    - not yay_data.stat.exists
+
+# Only install if binary doesn't exist
+- name: software | yay | build and install yay (arch)
+  tags: packages,aur,yay,workstation-packages
+  become: false
+  command:
+    chdir: "/home/kieranjames/yay"
+    cmd: "makepkg -sfi --noconfirm"
+    creates: /usr/bin/yay
+  when:
+    - ansible_distribution == "Archlinux"
+    - not yay_data.stat.exists
+
+# Clean up
+- name: software | yay | remove redundant files
+  tags: packages,aur,yay,workstation-packages
+  become: true
+  file:
+    path: /home/kieranjames/yay
+    state: absent
+  when: ansible_distribution == "Archlinux"

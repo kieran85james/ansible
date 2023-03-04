@@ -1,0 +1,7 @@
+- name: software | firefox | install package
+  tags: packages,flatpak,firefox,workstation-packages
+  become_user: kieranjames
+  flatpak:
+    name: org.mozilla.firefox
+    method: system
+    state: present

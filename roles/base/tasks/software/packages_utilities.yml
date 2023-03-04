@@ -3,4 +3,22 @@
   package:
     state: latest
     name:
+      - colordiff
+      - curl
+      - neofetch
+      - net-tools
+      - rsync
+      - tmux
+      - "{{ vim_package }}"
+      - wget
+      - whois
       - zsh
+
+- name: system setup | utilities | install man-pages (arch)
+  tags: packages,system,settings
+  pacman:
+    state: latest
+    name:
+      - man-db
+      - man-pages
+  when: ansible_distribution == "Archlinux"

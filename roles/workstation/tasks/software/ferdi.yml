@@ -1,8 +1,0 @@
-- name: software | ferdi | install package
-  tags: packages,flatpak,ferdi,workstation-packages
-  become_user: kieranjames
-  flatpak:
-    name: com.getferdi.Ferdi
-    method: system
-    state: present
-  when: ferdi is defined and ferdi == true

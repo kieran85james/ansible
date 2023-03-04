@@ -22,10 +22,18 @@
   changed_when: False
   when: cryptomator_repo.changed
 
+# - name: software | cryptomator | install package
+#   apt:
+#     name: cryptomator
+#   when:
+#     - ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+#     - cryptomator is defined
+#     - cryptomator == true
+
 - name: software | cryptomator | install package
-  apt:
-    name: cryptomator
-  when:
-    - ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
-    - cryptomator is defined
-    - cryptomator == true
+  tags: packages,flatpak,cryptomator,workstation-packages
+  become_user: kieranjames
+  flatpak:
+    name: org.cryptomator.Cryptomator
+    method: system
+    state: present

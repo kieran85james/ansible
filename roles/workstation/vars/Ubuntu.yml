@@ -1,2 +1,14 @@
 gdm_package: gdm3
 steam_package: steam-installer
+cryptsetup_package: cryptsetup-bin
+cups_package: cups-daemon
+font_fira_mono_package: fonts-firacode
+hyphen_package: hyphen-en-gb
+p7zip_package: p7zip-full
+libnotify_package: libnotify-bin
+network_manager_openvpn_package: network-manager-openvpn
+network_manager_package: network-manager
+network_manager_pptp_package: network-manager-pptp
+network_manager_vpnc_package: network-manager-vpnc
+wireless_tools_package: wireless-tools
+wpa_supplicant_package: wpasupplicant

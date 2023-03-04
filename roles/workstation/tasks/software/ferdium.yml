@@ -1,0 +1,8 @@
+- name: software | ferdium | install package
+  tags: packages,flatpak,ferdium,workstation-packages
+  become_user: kieranjames
+  flatpak:
+    name: org.ferdium.Ferdium
+    method: system
+    state: present
+  when: ferdium is defined and ferdium == true

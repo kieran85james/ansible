@@ -1,0 +1,14 @@
+gdm_package: gdm
+steam_package: steam
+cryptsetup_package: cryptsetup
+cups_package: cups
+font_fira_mono_package: otf-fira-mono
+hyphen_package: hyphen-en
+p7zip_package: p7zip
+libnotify_package: libnotify
+network_manager_openvpn_package: networkmanager-openvpn
+network_manager_package: networkmanager
+network_manager_pptp_package: networkmanager-pptp
+network_manager_vpnc_package: networkmanager-vpnc
+wireless_tools_package: wireless_tools
+wpa_supplicant_package: wpa_supplicant
