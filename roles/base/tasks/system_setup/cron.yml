@@ -5,6 +5,14 @@
       - "{{ cron_package }}"
     state: latest
 
+- name: system setup | cron | start and enable cronie daemon
+  tags: cron
+  service:
+    name: cronie
+    state: started
+    enabled: true
+  when: ansible_distribution == "Archlinux"
+
 - name: system setup | cron | schedule automatic ansible provisioning
   tags: cron
   cron:

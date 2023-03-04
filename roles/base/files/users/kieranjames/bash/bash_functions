@@ -1,4 +1,3 @@
-## Functions
 # Make a directory, then go there
 md() {
     test -n "$1" || return

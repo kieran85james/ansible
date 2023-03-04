@@ -1,0 +1,15 @@
+- name: software | libreoffice | remove in preparation of flatpak package
+  tags: cleanup,packages,libreoffice,workstation-packages
+  package:
+    state: absent
+    name:
+      - libreoffice*
+  when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+
+- name: software | libreoffice | install package
+  tags: packages,flatpak,libreoffice,workstation-packages
+  become_user: kieranjames
+  flatpak:
+    name: org.libreoffice.LibreOffice
+    method: system
+    state: present

@@ -2,4 +2,49 @@
   tags: packages,code,workstation-packages
   package:
     name: code
-  when: code is defined and code == true
+  when:
+    - ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+    - code is defined
+    - code == true
+
+# Arch install of code
+# Check if code is installed
+- name: software | code | check if code is installed (arch)
+  stat:
+    path: "/usr/bin/code"
+  register: code_data
+  when: ansible_distribution == "Archlinux"
+
+# Only clone if binary doesn't exist
+- name: software | code | clone code (arch)
+  tags: packages,aur,code,workstation-packages
+  become: false
+  git:
+    repo: https://aur.archlinux.org/visual-studio-code-bin.git
+    dest: "/home/kieranjames/visual-studio-code-bin"
+    update: true
+  when:
+    - ansible_distribution == "Archlinux"
+    - not code_data.stat.exists
+
+# Only install if binary doesn't exist
+- name: software | code | build and install code (arch)
+  tags: packages,aur,code,workstation-packages
+  become: false
+  command:
+    chdir: "/home/kieranjames/visual-studio-code-bin"
+    cmd: "makepkg -sfi --noconfirm"
+    creates: /usr/bin/code
+  when:
+    - ansible_distribution == "Archlinux"
+    - not code_data.stat.exists
+
+# Clean up
+- name: software | code | remove redundant files
+  tags: packages,aur,code,workstation-packages
+  become: true
+  file:
+    path: /home/kieranjames/visual-studio-code-bin
+    state: absent
+  when: ansible_distribution == "Archlinux"
+  
