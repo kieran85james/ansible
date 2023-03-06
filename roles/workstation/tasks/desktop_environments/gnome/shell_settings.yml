@@ -107,7 +107,7 @@
   tags: gnome,gnome-shell
   become_user: kieranjames
   dconf:
-    key: "/org/gnome/shell/overrides/workspaces-only-on-primary"
+    key: "/org/gnome/mutter/workspaces-only-on-primary"
     value: "false"
 
 - name: gnome | shell settings | set gnome-screenshot default save directory

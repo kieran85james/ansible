@@ -183,30 +183,13 @@
     - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/command", value: "'gnome-terminal -e tmux'" }
   when: terminal_emulator is not defined
 
-# Uncommenting the below plays will restore the default GNOME shortcuts for these actions:
-#- name: gnome | keybindings | set keybindings for switching between workspaces
-#  become_user: kieranjames
-#  dconf:
-#    key: "{{ item.key }}"
-#    value: "{{ item.value}}"
-#  with_items:
-#      - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-down", value: "['<Super>Page_Down']" }
-#      - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-up", value: "['<Super>Page_Up']" }
-
-#- name: gnome | keybindings | set key binding for moving windows to other workspaces
-#  become_user: kieranjames
-#  dconf:
-#    key: "{{ item.key }}"
-#    value: "{{ item.value}}"
-#  with_items:
-#      - { key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-down", value: "['<Shift><Super>Page_Down']" }
-#      - { key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-up", value: "['<Shift><Super>Page_Up']" }
-
-#- name: gnome | keybindings | set maximize/minimize key bindings
-#  become_user: kieranjames
-#  dconf:
-#    key: "/org/gnome/desktop/wm/keybindings/{{ item.key }}"
-#    value: "{{ item.value}}"
-#  with_items:
-#      - { key: maximize, value: "'<Super>Up'" }
-#      - { key: unmaximize, value: "'<Super>Down'" }
+# Fixes
+# For some reason <Super>n wouldn't work and <super>m would instead for notifications
+- name: gnome | keybindings | disable default browser key binding
+  tags: gnome,keybindings
+  become_user: kieranjames
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "/org/gnome/shell/keybindings/focus-active-notification", value: "@as ['<Super>n']" }
