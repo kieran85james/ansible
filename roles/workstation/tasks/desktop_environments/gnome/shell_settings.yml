@@ -108,7 +108,7 @@
   dconf:
     key: "/org/gnome/shell/extensions/pop-shell/tile-by-default"
     value: "true"
-  when: ansible_distribution == "Pop!_OS"
+  when: gnome is defined and gnome == true
 
 - name: gnome | shell settings | active-hint
   tags: gnome,gnome-lockscreen
@@ -116,7 +116,7 @@
   dconf:
     key: "/org/gnome/shell/extensions/pop-shell/active-hint"
     value: "true"
-  when: ansible_distribution == "Pop!_OS"
+  when: gnome is defined and gnome == true
 
 - name: gnome | shell settings | gap-inner
   tags: gnome,gnome-lockscreen
@@ -124,7 +124,7 @@
   dconf:
     key: "/org/gnome/shell/extensions/pop-shell/gap-inner"
     value: "true"
-  when: ansible_distribution == "Pop!_OS"
+  when: gnome is defined and gnome == true
 
 - name: gnome | shell settings | gap-outer
   tags: gnome,gnome-lockscreen
@@ -132,4 +132,12 @@
   dconf:
     key: "/org/gnome/shell/extensions/pop-shell/gap-outer"
     value: "true"
-  when: ansible_distribution == "Pop!_OS"
+  when: gnome is defined and gnome == true
+
+- name: gnome | shell settings | toggle-maximized
+  tags: gnome,gnome-lockscreen
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/desktop/wm/keybindings/toggle-maximized"
+    value: "true"
+  when: gnome is defined and gnome == true
