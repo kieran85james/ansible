@@ -10,7 +10,7 @@
   tags: gnome,gnome-shell
   become_user: kieranjames
   dconf:
-    key: "/org/gnome/shell/interface/enable-hot-corners"
+    key: "/org/gnome/desktop/interface/enable-hot-corners"
     value: "false"
 
 - name: gnome | shell settings | event-sounds (disable)
@@ -95,6 +95,13 @@
     key: "/org/gnome/desktop/notifications/show-in-lock-screen"
     value: "false"
 
+- name: gnome | shell settings | workspaces-only-on-primary
+  tags: gnome,gnome-shell
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/mutter/workspaces-only-on-primary"
+    value: "false"
+
 - name: gnome | shell settings | tile-by-default
   tags: gnome,gnome-lockscreen
   become_user: kieranjames
@@ -103,16 +110,26 @@
     value: "true"
   when: ansible_distribution == "Pop!_OS"
 
-- name: gnome | shell settings | workspaces-only-on-primary
-  tags: gnome,gnome-shell
+- name: gnome | shell settings | active-hint
+  tags: gnome,gnome-lockscreen
   become_user: kieranjames
   dconf:
-    key: "/org/gnome/mutter/workspaces-only-on-primary"
-    value: "false"
+    key: "/org/gnome/shell/extensions/pop-shell/active-hint"
+    value: "true"
+  when: ansible_distribution == "Pop!_OS"
 
-- name: gnome | shell settings | set gnome-screenshot default save directory
-  tags: gnome,gnome-shell
+- name: gnome | shell settings | gap-inner
+  tags: gnome,gnome-lockscreen
   become_user: kieranjames
   dconf:
-    key: "/org/gnome/gnome-screenshot/auto-save-directory"
-    value: "'/home/kieranjames/downloads'"
+    key: "/org/gnome/shell/extensions/pop-shell/gap-inner"
+    value: "true"
+  when: ansible_distribution == "Pop!_OS"
+
+- name: gnome | shell settings | gap-outer
+  tags: gnome,gnome-lockscreen
+  become_user: kieranjames
+  dconf:
+    key: "/org/gnome/shell/extensions/pop-shell/gap-outer"
+    value: "true"
+  when: ansible_distribution == "Pop!_OS"
