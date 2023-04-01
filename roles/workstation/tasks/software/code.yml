@@ -10,6 +10,12 @@
   register: code_repo
   when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
 
+- name: software | code | remove http repository
+  apt_repository:
+    repo: "deb [arch=amd64] http://packages.microsoft.com/repos/code stable main"
+    state: absent
+  when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+
 - name: software | code | update sources (repo added or changed)
   apt:
     update_cache: yes
