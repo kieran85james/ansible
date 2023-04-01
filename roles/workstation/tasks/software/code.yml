@@ -1,3 +1,21 @@
+- name: software | code | add repository key
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+  when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+
+- name: software | code | add repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/code stable main"
+    filename: code
+  register: code_repo
+  when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+
+- name: software | code | update sources (repo added or changed)
+  apt:
+    update_cache: yes
+  changed_when: False
+  when: code_repo.changed
+
 - name: software | code | install package
   tags: packages,code,workstation-packages
   package:
