@@ -7,4 +7,3 @@ python_psutil_package: python3-psutil
 sftp_path: /usr/lib/openssh/sftp-server
 sudo_group: sudo
 vim_package: vim-nox
-sftp_path: /usr/lib/openssh/sftp-server
