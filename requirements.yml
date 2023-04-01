@@ -1,3 +1,2 @@
-collections:
-  - name: kewlfft.aur
-  - name: petermosmans.customize-gnome
+- src: kewlfft.aur
+- src: petermosmans.customize-gnome

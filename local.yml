@@ -17,7 +17,7 @@
 
     - name: pre-run | install ansible-galaxy requirements
       tags: always
-      ansible.builtin.command: ansible-galaxy install -r requirements.yml
+      command: ansible-galaxy install -r requirements.yml
 
   # run roles
 - hosts: all
