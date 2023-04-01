@@ -15,6 +15,10 @@
       changed_when: False
       when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
 
+    - name: pre-run | install ansible-galaxy requirements
+      tags: always
+      ansible.builtin.command: ansible-galaxy install -r requirements.yml
+
   # run roles
 - hosts: all
   tags: base

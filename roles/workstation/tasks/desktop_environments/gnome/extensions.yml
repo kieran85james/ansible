@@ -1,3 +1,12 @@
+## Tiling Assistant - Leleat
+
+- name: gnome | extensions | petermosmans.customize-gnome
+  import_role: petermosmans.customize-gnome
+  vars:
+    gnome_extensions:
+      - id: 3733
+        enabled: yes
+
 # TODO: use external module to manage AUR packages https://wiki.archlinux.org/title/Ansible
 
 # gnome-shell-extension-pop-shell
