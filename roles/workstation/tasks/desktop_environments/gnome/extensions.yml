@@ -1,7 +1,8 @@
 ## Tiling Assistant - Leleat
 
 - name: gnome | extensions | petermosmans.customize-gnome
-  become_user: kieranjames
+  become_user: simone
+  become: true
   import_role:
     name: petermosmans.customize-gnome
   vars:
