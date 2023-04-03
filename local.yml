@@ -19,7 +19,7 @@
       tags: always
       become: true
       import_role:
-        - requirements
+        name: requirements
 
     - name: pre-run | install ansible-galaxy requirements
       tags: always
