@@ -8,6 +8,7 @@
     gnome_extensions:
       - id: 3733
         enabled: yes
+    gnome_user: kieranjames
 
 # TODO: use external module to manage AUR packages https://wiki.archlinux.org/title/Ansible
 

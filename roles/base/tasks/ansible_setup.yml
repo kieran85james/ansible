@@ -60,7 +60,7 @@
     group: simone
     mode: 0640
 
-- name: pre-run | install ansible-galaxy requirements
+- name: ansible setup | install ansible-galaxy requirements
   tags: ansible,ansible-setup
   become_user: simone
   command: ansible-galaxy install -r requirements.yml --force
