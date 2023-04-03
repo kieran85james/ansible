@@ -15,8 +15,15 @@
       changed_when: False
       when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
 
+    - name: pre-run | create ansible user
+      tags: always
+      become: true
+      roles:
+        - requirements
+
     - name: pre-run | install ansible-galaxy requirements
       tags: always
+      become_user: simone
       command: ansible-galaxy install -r requirements.yml --force
 
   # run roles
