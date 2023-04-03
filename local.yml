@@ -17,7 +17,7 @@
 
     - name: pre-run | create ansible user
       tags: always
-      include_role:
+      import_role:
         name: requirements
 
     - name: pre-run | install ansible-galaxy requirements
